@@ -1,0 +1,30 @@
+DLGTEMPLATE DLG_SPLITPANE LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  SZ_MAINTITLE, DLG_SPLITPANE, -4, -4, 200, 110,
+            NOT FS_DLGBORDER | FS_SIZEBORDER | WS_VISIBLE, FCF_SYSMENU |
+            FCF_TITLEBAR | FCF_MINBUTTON | FCF_MAXBUTTON | FCF_NOBYTEALIGN |
+            FCF_TASKLIST
+//    PRESPARAMS PP_FONTNAMESIZE "9.WarpSans"
+    BEGIN
+        CONTROL         "", SPLIT_1, 0, 0, 200, 98, WC_SPLITPANE,
+                        WS_GROUP | WS_VISIBLE | WS_TABSTOP
+                        | SPLITS_HIDEPANES
+//                         PRESPARAMS PP_BACKGROUNDCOLOR 0x0000ffff
+//                         PRESPARAMS PP_FOREGROUNDCOLOR 0x00000080
+//                         PRESPARAMS PP_BORDERLIGHTCOLOR 0x00ffff00
+//                         PRESPARAMS PP_BORDERDARKCOLOR 0x00ff0000
+        MLE             SZ_SPL1PANE1, MLE_1, 0, 0, 97, 98,
+                        MLS_WORDWRAP | MLS_HSCROLL | MLS_VSCROLL | WS_GROUP
+                        | MLS_IGNORETAB
+        CONTROL         "", SPLIT_2, 100, 0, 99, 98, WC_SPLITPANE, WS_GROUP
+                        | WS_VISIBLE | SPLITS_HORIZONTAL | WS_TABSTOP
+                        | SPLITS_HIDEPANES
+        MLE             SZ_SPL2PANE1, MLE_2_1, 101, 51, 97, 47,
+                        MLS_WORDWRAP | MLS_HSCROLL | MLS_VSCROLL | WS_GROUP
+                        | WS_TABSTOP | MLS_IGNORETAB
+        MLE             SZ_SPL2PANE2, MLE_2_2, 101, 0, 97, 47,
+                        MLS_WORDWRAP | MLS_HSCROLL | MLS_VSCROLL | WS_GROUP
+                        | WS_TABSTOP | MLS_IGNORETAB
+    END
+END
+

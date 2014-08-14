@@ -1,0 +1,9 @@
+This is beta code and it still lacks a real software license.
+
+In any case, until a new version of the source is available, the
+following rules should apply:
+- All the code included is copyright property of Alessandro Felice Cantatore.
+- You are allowed to use it only for experimental purposes or to include it
+  in free programs ONLY in binary format.
+- The usage in commercial (including shareware) projects is negotiable with
+  Alessandro Felice Cantatore.

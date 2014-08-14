@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <link href="../style.css" type="text/css" rel="stylesheet"></head>
+<body class="body">
+<h3>The SPLITCTLDATA structure</h3>
+The splitpane control data allows further customization of features
+like splitter thickness, position, style and the (optional) minimum
+sizes of
+the side panes.<br>This
+is useful when more values are to be set at once, expecially on
+splitpane creation, otherwise each value can be set individually via a
+proper <a href="pmmsgs.html">PM message</a> or a <a href="macros.html">function-like macro</a>.
+<h4>Structure definition</h4>
+<div class="prototype"><span class="preproc">#pragma pack(2)</span>
+<span class="keyword">typedef</span> <span class="keyword">struct</span> {
+   <a href="#USHORT_cb">USHORT cb</a>;         <span class="comment">// size of struct (20 or less if some members are unused)</span>
+   <a href="#USHORT_flag">USHORT flag</a>;       <span class="comment">// defines used structure members</span>
+   <a href="#SHORT_splitterPos">SHORT splitterPos</a>; <span class="comment">// initial splitter position (distance from the left</span>
+                      <span class="comment">// or bottom border according to the current orientation)</span>
+   <a href="#USHORT_thickness">USHORT thickness</a>;  <span class="comment">// bar thickness</span>
+   <a href="#SHORT_minLeft">SHORT minLeft</a>;     <span class="comment">// minimum width of the left pane</span>
+   <a href="#SHORT_minBottom">SHORT minRight</a>;    <span class="comment">// minimum width of the right pane</span>
+   <a href="#SHORT_minTop">SHORT minTop</a>;      <span class="comment">// minimum height of the top pane</span>
+   <a href="#SHORT_minBottom">SHORT minBottom</a>;   <span class="comment">// minimum height of the bottom pane</span>
+   <a href="#USHORT_style">USHORT style</a>;      <span class="comment">// control style (SPLITS_* flags)</span>
+} <span class="spltkwd">SPLITCTLDATA, * PSPLITCTLDATA</span>;<br><span class="preproc">#pragma pack()</span>
+
+</div>
+<h4>Structure members in details</h4>
+<dl>
+  <dt><span class="relevant"><a name="USHORT_cb"></a>USHORT cb</span></dt>
+  <dd>this is the structure size. It can be set to less than
+sizeof(SPLITCTLDATA) if some members are not used.</dd>
+  <dt><span class="relevant"><a name="USHORT_flag"></a>USHORT flag</span></dt>
+  <dd>indicates
+which control attributes must be updated and if the
+sizes are in pixels or dialog units:
+    <table border="0" cellpadding="0" cellspacing="2" width="100%">
+      <tbody>
+        <tr valign="top">
+          <td class="spltkwd" width="30%">SPLITCD_POS</td>
+          <td>use the <i>spllitterPos</i> member</td>
+        </tr>
+        <tr valign="top">
+          <td class="spltkwd">SPLITCD_THICKNESS</td>
+          <td>use the <i>thickness</i> member</td>
+        </tr>
+        <tr valign="top">
+          <td class="spltkwd">SPLITCD_STYLE</td>
+          <td>use the <i>style</i> member</td>
+        </tr>
+        <tr valign="top">
+          <td class="spltkwd">SPLITCD_MINLEFT</td>
+          <td>use the <i>minLeft</i> member</td>
+        </tr>
+        <tr valign="top">
+          <td class="spltkwd">SPLITCD_MINRIGHT</td>
+          <td>use the <i>minRight</i> member</td>
+        </tr>
+        <tr valign="top">
+          <td class="spltkwd">SPLITCD_MINTOP</td>
+          <td>use the <i>minTop</i> member</td>
+        </tr>
+        <tr valign="top">
+          <td class="spltkwd">SPLITCD_MINBOTTOM</td>
+          <td>use the <i>minBottom</i> member</td>
+        </tr>
+        <tr valign="top">
+          <td class="spltkwd">SPLITCD_DIALOGUNITS</td>
+          <td><i>splitterPos</i>, <i>thickness</i>, <i>minLeft</i>, <i>minRight</i>,
+          <i>minTop</i> and <i>minBottom</i> values are in dialog
+units rather than in pixels.</td>
+        </tr>
+      </tbody>
+    </table>
+  </dd>
+  <dt><span class="relevant"><a name="SHORT_splitterPos"></a>SHORT
+splitterPos</span></dt>
+  <dd>defines the splitter
+axis position. It can be either an absolute
+value (in pixels or dialog units if the SPLITCD_DIALOGUNITS flag is
+specified) or a relative one.<br>
+Relative values are expressed by negative numbers ranging from -1 to
+-99 and are translated to percentage of the whole splitpane width
+(vertical splitter) or height (horizontal splitter) as distance from
+the left/top border. So if a splitpane is 500 pixels wide a value of
+-25 sets the splitter at 125 pixels from the left border, while if a
+splitpane is 300 pixels haigh a value of -33 sets the splitter at 99
+pixels from the top border.<br>
+Splitter position values are validated before being apllied, so the
+splitter cannot be moved outside of the splitpane area and cannot
+reduce any of its side windows below the&nbsp;minimum values (if any of them is set).<br>
+Special values are used to collapse (hide) or restore panes:
+    <table border="0" cellpadding="0" cellspacing="2" width="100%">
+      <tbody>
+        <tr valign="top">
+          <td class="spltkwd" width="30%">SPLITHIDE_1</td>
+          <td>collapse the left/top pane (if it is not yet hidden)</td>
+        </tr>
+        <tr valign="top">
+          <td class="spltkwd">SPLITHIDE_2</td>
+          <td>collapse the right/bottom pane (if it is not yet hidden)</td>
+        </tr>
+        <tr valign="top">
+          <td class="spltkwd">SPLITHIDE_RESTORE</td>
+          <td>if there is any hidden pane restore it moving the
+splitter to the previous position</td>
+        </tr>
+      </tbody>
+    </table>
+  </dd>
+  <dt><span class="relevant"><a name="USHORT_thickness"></a>USHORT
+thickness</span></dt>
+  <dd>defines the splitter
+thickness in pixels or dialog units. Valid
+splitter thickness ranges from 3 to 255 pixels. Values beyond that range
+are automatically set to the nearest limit.</dd>
+  <dt><span class="relevant"><a name="SHORT_minLeft"></a>SHORT minLeft</span></dt>
+  <dd>defines
+the minimum width (by default it is 0) of the left pane.
+The splitter cannot be moved to the left beyond this limit. The left
+pane can
+anyway be hidden if the splitpane style allows that.<br>
+When the total splitpane width is less than the sum of the left
+and right minimum width then the minimum values are ignored.</dd>
+  <dt><span class="relevant"><a name="SHORT_minRight"></a>SHORT minRight</span></dt>
+  <dd>defines the minimum width (by default it is 0) of the left
+pane.
+The splitter cannot be moved to the right beyond this limit. The right
+pane can
+anyway be hidden if the splitpane style allows that.<br>
+When the total splitpane width is less than the sum of the left
+and right minimum width then the minimum values are ignored.</dd>
+  <dt><span class="relevant"><a name="SHORT_minTop"></a>SHORT minTop</span></dt>
+  <dd>defines the minimum height (by default it is 0) of the top
+pane.
+The splitter cannot be moved to the top beyond this limit. The top pane
+can
+anyway be hidden if the splitpane style allows that.<br>
+When the total splitpane height is less than the sum of the top
+and bottom minimum height then the minimum values are ignored.</dd>
+  <dt><span class="relevant"><a name="SHORT_minBottom"></a>SHORT
+minBottom</span></dt>
+  <dd>defines the minimum height (by default it is 0) of the bottom
+pane.
+The splitter cannot be moved to the bottom beyond this limit. The
+bottom pane can
+anyway be hidden if the splitpane style allows that.<br>
+When the total splitpane height is less than the sum of the top
+and bottom minimum height then the minimum values are ignored.</dd>
+  <dt><span class="relevant"><a name="USHORT_style"></a>USHORT style</span></dt>
+  <dd>any combination of the previously mentioned styles.</dd>
+</dl>
+</body></html>

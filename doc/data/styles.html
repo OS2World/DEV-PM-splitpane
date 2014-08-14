@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <link href="../style.css" type="text/css" rel="stylesheet"></head>
+<body class="body">
+<h3><a name="WC_SPLITPANE_styles"></a>WC_SPLITPANE
+styles</h3>
+The splitpane control styles allow you to define orientation,
+hide-ability of side panes, resizing strategies and splitter drag
+styles.<br>
+<p><b>Remarks:</b></p>
+For various reasons (like the ability to immediately respond to
+orientation
+changes) splitpane styles cannot be queried or set via the <span class="relevant">WinQuery/SetWindowULong()</span> API,
+but require specific
+PM messages or the usage of one of the function-like <a href="getsetstyle.html">macros defined for that purpose</a>.<br>
+<p>All the styles are mutually exclusive withing the categor they
+belong to:</p>
+<h4><a href="orientation.html">Orientation</a></h4>
+<dl>
+  <dt><span class="spltkwd">SPLITS_COLUMNS</span> (default)</dt>
+  <dd>the
+splitpane is divided into columns by a vertical splitter.</dd>
+  <dt class="spltkwd">SPLITS_ROWS</dt>
+  <dd>the splitpane is divided into rows by a horizontal splitter.<br>
+  </dd>
+</dl>
+<h4><a href="hidepane.html">Hide-pane styles</a></h4>
+<dl>
+  <dt><span class="spltkwd">SPLITS_HIDENONE</span> (default)<br>
+  </dt>
+  <dd>the
+splitter does not include any clickable area. The panes can
+be dragged to the borders of the splitpane only if their minimum size
+is set to zero.<br>
+  </dd>
+  <dt class="spltkwd">SPLITS_HIDEPANE1</dt>
+  <dd>define the left/top pane as hide-able. The splitter include a
+clickable area where triangle shaped arrows painted with the foreground
+color show which pane can be hidden.</dd>
+  <dt class="spltkwd">SPLITS_HIDEPANE2</dt>
+  <dd>define the right/bottom pane as hide-able.</dd>
+  <dt class="spltkwd">SPLITS_HIDEPANES</dt>
+  <dd>equates to ( <span class="spltkwd">SPLITS_HIDEPANE1</span> | <span class="spltkwd">SPLITS_HIDEPANE2</span>) making both
+side
+panes hide-able.<br>
+  </dd>
+</dl>
+<h4><a href="resize.html">Resizing behaviour</a></h4>
+<dl>
+  <dt><span class="spltkwd">SPLITS_PROPORTIONAL</span> (default)<br>
+  </dt>
+  <dd>when the size of the splitpane changes the splitter is moved
+to
+keep the rate of the sizes of the two panes.</dd>
+  <dt class="spltkwd">SPLITS_FIXED1</dt>
+  <dd>the size of the left/top pane is kept constant, while the
+size of
+the other pane changes according to the splitpane size.</dd>
+  <dt class="spltkwd">SPLITS_FIXED2</dt>
+  <dd>the size of the right/bottom pane is kept constant, while the
+size of the other pane changes according to the splitpane size.<br>
+  </dd>
+</dl>
+<h4><a href="splitdrag.html">Splitter drag behaviour</a></h4>
+<dl>
+  <dt><span class="spltkwd">SPLITS_DRAGSYSTEM</span> (default and reccomended)</dt>
+  <dd>use the default settings for window dragging, that is when <i>Full
+window drag</i> is selected in the system settings, the side
+panes size
+and position changes following the splitter, otherwise only a frame is
+dragged and the size panes size and position changes only when the drag
+ends.</dd>
+  <dt class="spltkwd">SPLITS_DRAGSOLID</dt>
+  <dd>ignore
+the system settings and always drag the splitter as for <i>Full
+window drag.</i></dd>
+  <dt class="spltkwd">SPLITS_DRAGFRAME</dt>
+  <dd>ignore the system settings and always drag the splitter as a
+frame.<br>
+  </dd>
+</dl>
+</body></html>

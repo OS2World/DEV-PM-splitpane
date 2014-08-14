@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<link href="../style.css" type="text/css" rel="stylesheet">
+<body class="body">
+<h1>The splitpane control</h1>
+<table align="right" border="0" cellpadding="8" cellspacing="4" width="300">
+<tbody>
+<tr><td><img src="1.png" height="242" hspace="20" vspace="6" width="237">
+<br><div class="imgcaption">In this picture a splitpane control
+overlays the whole client area of a window. Another splitpane, a child of
+the previous one, is situated over the right area of its parent.</div>
+</td></tr>
+<tr><td><img src="2.png" height="242" hspace="20" vspace="6" width="237">
+<br><div class="imgcaption">The splitter can be
+moved with the keyboard. This picture shows a splitter featuring the
+input focus emphasis.</div>
+</td></tr>
+<tr><td><img src="3.png" height="242" hspace="20" vspace="6" width="237">
+<br><div class="imgcaption">A splitter can optionally
+include a clickable area displaying arrows to collapse or
+restore one of the panes on its side. The arrow color changes according
+to its current state (normal, mouse button pressed or disabled state).</div>
+</td></tr>
+<tr><td><img src="4.png" height="242" hspace="20" vspace="6" width="237">
+<br><div class="imgcaption">This picture shows
+the result of the event displayed in the previous one. As a consequence
+of a mouse click over the right arrow, the right area of the splitpane
+has been collapsed. The right arrow can no longer be clicked and so is
+painted in a different color to indicate its disabled state.</div>
+</td></tr>
+</tbody></table>
+<h2>Overview</h2>
+A splitpane control displays two child windows side by side (or one on
+top of the other). The space between the two child windows is occupied
+by a splitter which can be dragged to change the sizes of the two
+windows at its sides.<br>
+Splitpane controls can be nested to divide a window in more than two
+areas.
+<p>A pattern, painted over the splitter, shows the user that
+it is an interactive area, not just plain dialog background.</p>
+<p>As the mouse pointer is moved over the splitter its shape changes to
+show that the splitter can be moved horizontally (or vertically if it
+is an horizontal splitter).
+<h2><a name="userint">User interaction</a></h2>
+In most similar splitpane controls, a splitter can
+be dragged only via the mouse, while in this splitpane implementation a
+splitter can respond to keyboard events as well.
+<p>To be able to recognize keyboard events the splitpane must first
+acquire the input focus. Unlikely most other controls it does not
+acquire the focus when a mouse button is clicked over it (the user can
+still drag it around with the mouse, without stealing the focus from
+other controls), but only when the user is already using the keyboard
+and switches the focus among the various controls by the TAB key.</p>
+
+<p>As soon as the splitter gets the input focus, the
+pattern changes from a two colors 3D one to a single color
+(usually the foreground color).</p>
+
+<p>The direction keys are used to move the splitter in steps as long as
+the splitter thickness.<br>
+The Page-up/down keys reduce the widths of one of the two panes to its
+minimum (by default zero pixels).<br>
+The Home/End keys completely hide one of the side areas (if the current
+splitpane style allows that).<br>
+
+<p>The splitpane control optionally allows to
+immediately hide and restore one of its side panes. In this case the
+splitter includes a clickable area with two triangle shaped arrows.<br>
+The mouse pointer shape switches to the default when the mouse is moved
+over the clickable area.<br>
+Once the left mouse button is pressed over an arrow, the color changes
+to provide a visible feedback of the event. Then if the mouse button is
+released over the arrow the corresponding pane is collapsed while the
+other pane occupies the whole area and the just clicked arrow takes a
+different color to display its disabled state.<br>
+A collapsed pane can be restored by a click on the enabled arrow or
+just by dragging it to any other position.<br>
+</body></html>

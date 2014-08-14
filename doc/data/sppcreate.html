@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <link href="../style.css" type="text/css" rel="stylesheet"></head>
+<body class="body">
+<h3>The SPLITPCREATE structure</h3>
+The SPLITPCREATE structure is used to comfortably create both a splitpane
+and its child panes via the <a href="create.html">WinCreateSplitPane() API</a>.<br>
+It embeds two <a href="sppchild.html">SPLITPANECHILD</a> for child panes data.<br>
+    See the
+<a href="stdwindow.html#WinCreateSplitPane">splitpane in standard windows example code</a>
+for more details on typical usage.
+
+<h4>Structure definition</h4>
+<div class="prototype"><span class="preproc">#pragma pack(2)</span>
+<span class="keyword">typedef</span> <span class="keyword">struct</span> _SPLITPCREATE <span class="spltkwd">SPLITPCREATE</span>;
+<span class="keyword">typedef</span> <span class="spltkwd">SPLITPCREATE</span> * <span class="spltkwd">PSPLITPCREATE</span>;
+<span class="keyword">struct</span> _SPLITPCREATE {
+   <a href="#pane1">SPLITPANECHILD pane1</a>;       <span class="comment">// data of the left/top pane</span>
+   <a href="#pane2">SPLITPANECHILD pane2</a>;       <span class="comment">// data of the right/bottom pane</span>
+   <a href="#pCtlData">PSPLITCTLDATA pCtlData</a>;     <span class="comment">// optional control data</span>
+   <a href="#pPresParams">PVOID pPresParams</a>;          <span class="comment">// optional presentation parameters</span>
+} ;
+</div>
+<dl>
+<dt><span class="relevant"><a name="pane1"></a>SPLITPANECHILD pane1</span></dt>
+   <dd>embedded <a href="sppchild.html">SPLITPANECHILD</a> structure to
+   describe details about the left/top child pane.</dd>
+<dt><span class="relevant"><a name="pane2"></a>SPLITPANECHILD pane2</span></dt>
+   <dd>embedded <a href="sppchild.html">SPLITPANECHILD</a> structure to
+   describe details about the right/bottom child pane.</dd>
+<dt><span class="relevant"><a name="pCtlData"></a>PSPLITCTLDATA pCtlData</span></dt>
+   <dd>optional address of a <a href="ctldata.html">SPLITCTLDATA</a>
+   to initialize the splitpane to non-default values.</dd>
+<dt><span class="relevant"><a name="pPresParams"></a>PVOID pPresParams</span></dt>
+   <dd>optional presentation <a href="presparms.html">parameters address</a>.
+   </dd>
+</dl>
+</body></html>

@@ -1,0 +1,90 @@
+/* general text styles */
+.body {
+   font-family: Helvetica, sans-serif;
+   font-size: 16px;
+   text-align: justify;
+}
+
+.relevant {
+  font-family: Helvetica, sans-serif;
+  color: #0000ff;
+}
+
+.imgcaption {             /* image caption */
+   font-size: small;
+   text-align: justify;
+}
+
+.sidebar {                /* side bar text */
+   font-family: Helvetica, sans-serif;
+   font-size: 13px;
+}
+div#ind1 {margin-left:15px}
+div#ind2 {margin-left:28px}
+                          /* end of size bar text styles */
+
+
+/* link styles */
+a:link {
+  color: #0000ff;
+  text-decoration: none;
+}
+a:visited {
+  color: #0000ff;
+  text-decoration: none;
+}
+a:active {
+  background-color: #ffffc0;
+  text-decoration: none;
+}
+a:hover {
+  background-color: #ffffc0;
+  color: #a000ff;
+  text-decoration: underline;
+}
+
+
+/* programming reference styles */
+.tablehead {
+  background-color: #e0e0ff; color: #0000ff; font-weight:bold;
+}
+
+.subhead {
+  background-color: #f6f6ff; color: #800000; font-style: italic;
+}
+
+.codexmpl {
+   white-space: pre;
+   background-color: #f0f0f0; color: #404040;
+   font-family: "Lucida Sans Typewriter", "Courier New", monospace;
+   font-size: 14px;
+}
+
+.prototype {
+   white-space: pre;
+   font-family: "Lucida Sans Typewriter", "Courier New", monospace;
+   font-size: 14px;
+}
+
+
+/* C source code styles */
+.comment {
+  color: #808080;
+}
+.preproc {
+  color: #008080;
+}
+.keyword {
+  /* background-color: #fffff0; */
+  color: #0080ff;
+}
+.os2kwd {
+  color: #a00000;
+}
+.spltkwd {
+  color: #a000a0;
+}
+
+.quotedtxt {
+   color: #00a000;
+}

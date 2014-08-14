@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <link href="../style.css" type="text/css" rel="stylesheet"></head>
+<body class="body">
+<h3>The SPLITPANECHILD structure</h3>
+The SPLITPANECHILD structure is used by the
+<a href="create.html">WinCreateSplitPane() API</a> to
+describe all the data needed for the creation of a child pane. There
+should be no need to declare it directly as it is used only as a member
+of the&nbsp;SPLITPCREATE structure (see the
+<a href="stdwindow.html#WinCreateSplitPane">splitpane in standard windows example code</a>
+for more details on typical usage).
+<h4>Structure definition</h4>
+<div class="prototype"><span class="preproc">#pragma pack(2)</span>
+<span class="keyword">typedef</span> <span class="keyword">struct</span> {
+   <span class="keyword">union</span> {
+      <a href="#class">PSZ class</a>;               <span class="comment">// class name</span>
+      <a href="#pDlgProc">PFNWP pDlgProc</a>;          <span class="comment">// dialog procedure</span>
+   } ;
+   <span class="keyword">union</span> {
+      <a href="#text">PSZ text</a>;                <span class="comment">// pane text (if any)</span>
+      <a href="#hmod">HMODULE hmod</a>;            <span class="comment">// module handle</span>
+   } ;
+   <span class="keyword">union</span> {
+      <a href="#pCtlData">PVOID pCtlData</a>;          <span class="comment">// optional control data</span>
+      <a href="#pSplitCreate">PSPLITPCREATE pSplitCreate</a>;   <span class="comment">// nested splitpane creation data</span>
+   } ;
+   <a href="#pPresParams">PVOID pPresParams</a>;          <span class="comment">// optional presentation parameters</span>
+   <a href="#style">ULONG style</a>;                <span class="comment">// pane style (WS_VISIBLE is set by default)</span>
+   <a href="#id">USHORT id</a>;                  <span class="comment">// pane window ID</span>
+   <a href="#type">USHORT type</a>;                <span class="comment">// type of child (window, dialog, splitpane)</span>
+} <span class="spltkwd">SPLITPANECHILD</span>, * <span class="spltkwd">PSPLITPANECHILD</span>;
+</div>
+<dl>
+<dt><span class="relevant"><a name="class"></a>PSZ class</span></dt>
+   <dd>class name of pane window. This can be one of the standard window
+   classes (e.g. WC_LISTBOX, WC_SPINBUTTON, ecc.), a nested splitpane
+   (WC_SPLITPANE) or any other user class (e.g. "myWinClass").</dd>
+<dt><span class="relevant"><a name="pDlgProc"></a>PFNWP pDlgProc</span></dt>
+   <dd>dialog procedure. This is used only when the child pane is a
+   dialog. When not used, do not set to NULL to not overwrite the window
+   class member.</dd>
+<dt><span class="relevant"><a name="text"></a>PSZ text</span></dt>
+   <dd>optional pane window text.</dd>
+<dt><span class="relevant"><a name="hmod"></a>HMODULE hmod</span></dt>
+   <dd>module handle. This is used only when the child pane is a dialog.</dd>
+<dt><span class="relevant"><a name="pCtlData"></a>PVOID pCtlData</span></dt>
+   <dd>optional window control data (e.g. BTNCTDATA, SPBCDATA,
+   etc.) or dialog creation parameters (last parameter of the WinLoadDlg()
+   API)</dd>
+<dt><span class="relevant"><a name="pSplitCreate"></a>PSPLITPCREATE pSplitCreate</span></dt>
+   <dd>address of a <a href="sppcreate.html"></a>SPLITPCREATE structure
+   used when the child pane is a nested splitpane.</dd>
+<dt><span class="relevant"><a name="pPresParams"></a>PVOID pPresParams</span></dt>
+   <dd>optional presentation parameters of the child pane.</dd>
+<dt><span class="relevant"><a name="style"></a>ULONG style</span></dt>
+   <dd>child pane style. It is not necessary to explicitally set WS_VISIBLE
+   as the style is automatically added.</dd>
+<dt><span class="relevant"><a name="id"></a>USHORT id</span></dt>
+   <dd>child pane window ID.</dd>
+<dt><span class="relevant"><a name="type"></a>USHORT type</span></dt>
+   <dd>type of child pane. This can be:
+   <table width=100%><tbody>
+   <tr valign=top><td width=30%><span class="spltkwd">SPLITCHILD_WND</span></td>
+      <td>the child pane is an ordinary window. In this case the following
+      members must be used: class, text, style, id.<br>
+      pCtlData and pPresParams are optional.</td></tr>
+   <tr><td width=30%><span class="spltkwd">SPLITCHILD_DLG</span></td>
+      <td>the child pane is a dialog window. In this case the following
+      members must be used: pDlgProc, hmod, id, type.<br>
+      pCtlData is optional.</td></tr>
+   <tr><td width=30%><span class="spltkwd">SPLITCHILD_SPLIT</span></td>
+      <td>the child pane is a nested splitpane. The mandatory members
+      in this case are: style, id, pSplitCreate and type.</td></tr>
+   </tbody></table>
+   </dd>
+</dl>
+</body></html>

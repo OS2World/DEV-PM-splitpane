@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <link href="../style.css" type="text/css" rel="stylesheet"></head>
+<body class="body">
+<h3>Using a splitpane in a dialog</h3>
+In your favourite dialog editor, if available, select the <i>user-defined</i>
+control or use a container or frame to reserve space for the splitpane
+control.<br>
+Once you have moved the <i>place holder</i> control on the
+dialog, place over that the two controls to be displayed on the
+sides of the splitpane, without caring too much about position and
+size, as the splitpane would take care of that, add any other controls needed
+by the dialog and then save it as a resource script.<br>
+Then open the <i>.dlg</i> or <i>.rc</i> file you created with a text
+editor and find the statement of the <i>user-control</i> or any other
+control you used as splitpane <i>place holder</i>. It will probably be
+something like:<br>
+<div class="prototype">
+<span class="os2kwd">   CONTROL</span> <span class="quotedtxt">"some text"</span>, &lt;id&gt;, &lt;x&gt;, &lt;y&gt;, &lt;cx&gt;, &lt;cy&gt;, &lt;class&gt;, &lt;style&gt;
+
+</div>
+Now modify the statement:<br>
+<ol>
+  <li>Replace
+the control text, if present, with an empty string (<span class="quotedtxt">""</span>),</li>
+  <li>do not modify the id, position coordinates and size of the
+control (unless there is any problem with them),</li>
+  <li>replace <i>&lt;class&gt;</i>
+with <span class="spltkwd">WC_SPLITPANE</span>,</li>
+  <li>ensure that the <span class="os2kwd">WS_VISIBLE</span>
+and <span class="os2kwd">WS_TABSTOP</span> styles have been specified
+and add to them any other <a href="styles.html">specific splitpane
+style</a>
+you may find suitable for your purposes.<br>
+  </li>
+</ol>
+Regarding the splitpane children, you can safely ignore their size and
+position. Just ensure that their IDs are unique within their parent
+dialog.<br>
+<p>Finally, to make the splitpane work properly, in your dialog
+procedure,
+on dialog initialization, you have to notify it the IDs of its child
+windows, by sending the proper PM message or by using the macro defined
+for that purpose in <span class="relevant">axSplitpane.h</span>:<br>
+<div class="prototype">   rc = <a href="id.html">dSplitSetChildren</a>(hwndDlg, idSplitPane, idLeftTopPane, idRightBottomPane);
+
+</div>
+In case you need to create nested splitpanes, just overlay the
+control you are using as <i>place holder</i> as you would do
+with any other kind of control and then modify the resource script
+statements as described. Finally, when calling the <a href="id.html"><font>dSplitSetChildren()</span></a><font>
+macro, use the
+id of the nested splitpane.<br>
+</span></p>
+</body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><link href="../style.css" type="text/css" rel="stylesheet"></head>
+<body class="body">
+<h3>Function-like macros</h3>
+The header file <span class="relevant">axSplitpane.h</span>
+contains a rich set of function-like macros which provide a comfortable
+interface to all the supported PM messages and relative parameters.
+<p>Macros prefixed with <span class="relevant">wSplit</span> are window
+macros alway taking as first parameter a splitpane window handle, while
+those prefixed with <span class="relevant">dSplit</span> are dialog macros
+which&nbsp;take as first two parameters a dialog window handle and a
+splitpane ID.</p>
+<p>
+Summary of splitpane macros:
+</p><p>
+<table width=100%><tbody>
+<tr valign=top><td class="subhead" colspan=2>Window IDs of the side panes</td></tr>
+<tr valign=top><td width=30%><a href="id.html#wSplitChildrenIDs">wSplitChildrenIDs</a></td>
+<td>returns the window IDs of both the side panes.</td></tr>
+<tr valign=top><td><a href="id.html#dSplitChildrenIDs">dSplitChildrenIDs</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td><a href="id.html#wSplitSetChildren">wSplitSetChildren</a></td>
+<td>makes windows side panes by their IDs.</td></tr>
+<tr valign=top><td><a href="id.html#dSplitSetChildren">dSplitSetChildren</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td class="subhead" colspan=2>Window handle of the side panes</td></tr>
+<tr valign=top><td><a href="handle.html#wSplitChildHandle">wSplitChildHandle</a></td>
+<td>returns the window handle of a side pane.</td></tr>
+<tr valign=top><td><a href="handle.html#dSplitChildHandle">dSplitChildHandle</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td><a href="handle.html#wSplitSetChildHandle">wSplitSetChildHandle</a></td>
+<td>makes a window a pane of a splitpane by its handle.</td></tr>
+<tr valign=top><td><a href="handle.html#dSplitSetChildHandle">dSplitSetChildHandle</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td class="subhead" colspan=2>Coordinates of splitpane parts</td></tr>
+<tr valign=top><td><a href="coords.html#wSplitQueryRectl">wSplitQueryRectl</a></td>
+<td>queries the rectangle of a side pane or of the whole pane.</td></tr>
+<tr valign=top><td><a href="coords.html#dSplitQueryRectl">dSplitQueryRectl</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td class="subhead" colspan=2>Position and size of splitpane parts</td></tr>
+<tr valign=top><td><a href="possize.html#wSplitQueryPosSize">wSplitQueryPosSize</a></td>
+<td>queries the position and size of a side pane or of the whole pane.</td></tr>
+<tr valign=top><td><a href="possize.html#dSplitQueryPosSize">dSplitQueryPosSize</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td class="subhead" colspan=2>Splitter position</td></tr>
+<tr valign=top><td><a href="splitpos.html#wSplitterPos">wSplitterPos</a></td>
+<td>returns the splitter position.</td></tr>
+<tr valign=top><td><a href="splitpos.html#dSplitterPos">dSplitterPos</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td><a href="splitpos.html#wSplitterSetPos">wSplitterSetPos</a></td>
+<td>changes the splitter position.</td></tr>
+<tr valign=top><td><a href="splitpos.html#dSplitterSetPos">dSplitterSetPos</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td class="subhead" colspan=2>Splitter thickness</td></tr>
+<tr valign=top><td><a href="splithick.html#wSplitterThickness">wSplitterThickness</a></td>
+<td>returns the splitter thickness.</td></tr>
+<tr valign=top><td><a href="splithick.html#dSplitterThickness">dSplitterThickness</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td><a href="splithick.html#wSplitterSetThickness">wSplitterSetThickness</a></td>
+<td>changes the splitter thickness.</td></tr>
+<tr valign=top><td><a href="splithick.html#dSplitterSetThickness">dSplitterSetThickness</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td class="subhead" colspan=2>Minimum sizes of splitpane parts</td></tr>
+<tr valign=top><td><a href="minsize.html#wSplitMinSize">wSplitMinSize</a></td>
+<td>returns the minimum width/height of a side pane.</td></tr>
+<tr valign=top><td><a href="minsize.html#dSplitMinSize">dSplitMinSize</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td><a href="minsize.html#wSplitSetMinSize">wSplitSetMinSize</a></td>
+<td>changes the minimum width/height of a side pane.</td></tr>
+<tr valign=top><td><a href="minsize.html#dSplitSetMinSize">dSplitSetMinSize</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td class="subhead" colspan=2>Spltipane styles</td></tr>
+<tr valign=top><td><a href="getsetstyle.html#wSplitStyle">wSplitStyle</a></td>
+<td>returns the current splitpane style.</td></tr>
+<tr valign=top><td><a href="getsetstyle.html#dSplitStyle">dSplitStyle</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td><a href="getsetstyle.html#wSplitSetStyle">wSplitSetStyle</a></td>
+<td>changes the current splitpane style.</td></tr>
+<tr valign=top><td><a href="getsetstyle.html#dSplitSetStyle">dSplitSetStyle</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td><a href="orientation.html#wSplitSetOrientation">wSplitSetOrientation</a></td>
+<td>changes the splitpane orientation.</td></tr>
+<tr valign=top><td><a href="orientation.html#dSplitSetOrientation">dSplitSetOrientation</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td><a href="hidepane.html#wSplitSetCollapsability">wSplitSetCollapsability</a></td>
+<td>changes the collapsability style.</td></tr>
+<tr valign=top><td><a href="hidepane.html#dSplitSetCollapsability">dSplitSetCollapsability</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td><a href="resize.html#wSplitSetSizeChangeStyle">wSplitSetSizeChangeStyle</a></td>
+<td>changes the behaviour on splitpane size change.</td></tr>
+<tr valign=top><td><a href="resize.html#dSplitSetSizeChangeStyle">dSplitSetSizeChangeStyle</a></td>
+<td>as above - dialog version.</td></tr>
+<tr valign=top><td><a href="splitdrag.html#wSplitterSetDragStyle">wSplitterSetDragStyle</a></td>
+<td>changes the behaviour on splitter drag.</td></tr>
+<tr valign=top><td><a href="splitdrag.html#dSplitterSetDragStyle">dSplitterSetDragStyle</a></td>
+<td>as above - dialog version.</td></tr>
+</tbody></table></p>
+</body></html>

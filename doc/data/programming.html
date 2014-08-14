@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><link href="../style.css" type="text/css" rel="stylesheet">
+</head><body class="body">
+<h2>Using the splitpane control in your programs</h2>
+The first thing to do in order to use a splitpane control in your
+application is to register its class.<br>
+<div class="prototype">
+rc = <a href="reg.html">WinSplitPaneRegister</a>(hab);
+
+</div>
+Then you can load a dialog template containing <span class="spltkwd">WC_SPLITPANE</span>
+<span class="os2kwd">CONTROL</span> statements or
+use <span class="relevant">WinCreateWindow()</span> to
+create the splitpane and its
+two child windows within the client of a standard window.<br>
+<p>It should be noticed that, due to the PM
+programming interface, in the current splitpane implementation, the
+child panes are not real child windows but a sort of virtual ones. They
+are just splitpane siblings whose position, size and visibility is
+controlled by the splitpane as if it were their real parent, so they
+must be created separately and then a PM message must be sent to the
+splitpane to notify it the handles of the sibling windows it must
+control.
+</p></body></html>

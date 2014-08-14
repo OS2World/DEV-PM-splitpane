@@ -1,0 +1,36 @@
+<html><head><link href="../style.css" type="text/css" rel="stylesheet"></head><body class="body"><h3>Splitpane style</h3><table width=100% border=0><tr valign=top><td colspan=2 class="tablehead"><a name="wSplitStyle">wSplitStyle</a></td></tr><tr valign=top><td colspan=2>This macro returns the specific style of a WC_SPLITPANE (i.e. it does not take into account the WS_* standard window styles).</td></tr><tr valign=top><td colspan=2 class="subhead">Syntax:</td></tr><tr valign=top><td colspan=2 class="prototype">ULONG wSplitStyle(HWND hwnd);</td></tr><tr valign=top><td colspan=2 class="subhead">Parameters:</td></tr><tr valign=top><td width=30%>HWND hwnd:</td><td>splitpane window handle.</td></tr><tr valign=top><td colspan=2 class="subhead">Return value:</td></tr><tr valign=top><td>ULONG:</td><td>a combination of <a href="styles.html">splitpane specific styles</a> (excluding the WS_* flags).</td></tr><tr valign=top><td colspan=2 class="subhead">Example:</td></tr><tr valign=top><td colspan=2 class="codexmpl">
+   ULONG style;
+   style = wSplitStyle(hwndSplitPane);
+   // check if the current splitter orientation is horizontal
+   if (style & SPLITS_ROWS)
+      ...
+
+</td></tr></table><p></p><table width=100% border=0><tr valign=top><td colspan=2 class="tablehead"><a name="dSplitStyle">dSplitStyle</a></td></tr><tr valign=top><td colspan=2>This macro returns the specific style of a WC_SPLITPANE (i.e. it does not take into account the WS_* standard window styles).</td></tr><tr valign=top><td colspan=2 class="subhead">Syntax:</td></tr><tr valign=top><td colspan=2 class="prototype">ULONG dSplitStyle(HWND hwndDlg, ULONG id);</td></tr><tr valign=top><td colspan=2 class="subhead">Parameters:</td></tr><tr valign=top><td width=30%>HWND hwndDlg:</td><td>dialog window handle.</td></tr><tr valign=top><td>ULONG id:</td><td>splitpane window ID.</td></tr><tr valign=top><td colspan=2 class="subhead">Return value:</td></tr><tr valign=top><td>ULONG:</td><td>a combination of <a href="styles.html">splitpane specific styles</a> (excluding the WS_* flags).</td></tr><tr valign=top><td colspan=2 class="subhead">Example:</td></tr><tr valign=top><td colspan=2 class="codexmpl">
+   ULONG style;
+   style = dSplitStyle(hwndDlg, ID_SPLITPANE);
+   // check if the current splitter orientation is horizontal
+   if (style & SPLITS_ROWS)
+      ...
+
+</td></tr></table><p></p><table width=100% border=0><tr valign=top><td colspan=2 class="tablehead"><a name="wSplitSetStyle">wSplitSetStyle</a></td></tr><tr valign=top><td colspan=2>This macro changes one or more WC_SPLITPANE specific styles (i.e. it does not take into account the WS_* standard window styles).</td></tr><tr valign=top><td colspan=2 class="subhead">Syntax:</td></tr><tr valign=top><td colspan=2 class="prototype">BOOL wSplitSetStyle(HWND hwnd, ULONG newStyle, ULONG changeMask);</td></tr><tr valign=top><td colspan=2 class="subhead">Parameters:</td></tr><tr valign=top><td width=30%>HWND hwnd:</td><td>splitpane window handle.</td></tr><tr valign=top><td>ULONG newStyle:</td><td>new splitpane style (any combination of the <a href="styles.html">SPLITS_* flags</a>).</td></tr><tr valign=top><td>ULONG changeMask:</td><td>mask specifying which specific styles are to be set or unset.</td></tr><tr valign=top><td colspan=2 class="subhead">Return value:</td></tr><tr valign=top><td>BOOL:</td><td>TRUE if the operation was successful,<br>FALSE in case of error.</td></tr><tr valign=top><td colspan=2 class="subhead">Example:</td></tr><tr valign=top><td colspan=2 class="codexmpl">
+   // to make the left/top pane collapsable
+   rc = wSplitSetStyle(hwndSplitPane, SPLITS_HIDEPANE1, SPLITS_HIDEPANE1);
+   // to make ONLY the left/top pane collapsable
+   rc = wSplitSetStyle(hwndSplitPane, SPLITS_HIDEPANE1, SPLITS_HIDEPANES);
+   // to make NO pane collapsable
+   rc = wSplitSetStyle(hwndSplitPane, SPLITS_HIDENONE, SPLITS_HIDEPANES);
+   ...
+
+</td></tr></table><p></p><table width=100% border=0><tr valign=top><td colspan=2 class="tablehead"><a name="dSplitSetStyle">dSplitSetStyle</a></td></tr><tr valign=top><td colspan=2>This macro changes one or more WC_SPLITPANE specific styles (i.e. it does not take into account the WS_* standard window styles).</td></tr><tr valign=top><td colspan=2 class="subhead">Syntax:</td></tr><tr valign=top><td colspan=2 class="prototype">BOOL dSplitSetStyle(HWND hwndDlg, ULONG id, ULONG newStyle, ULONG changeMask);</td></tr><tr valign=top><td colspan=2 class="subhead">Parameters:</td></tr><tr valign=top><td width=30%>HWND hwndDlg:</td><td>dialog window handle.</td></tr><tr valign=top><td>ULONG id:</td><td>splitpane window ID.</td></tr><tr valign=top><td>ULONG newStyle:</td><td>new splitpane style (any combination of the <a href="styles.html">SPLITS_* flags</a>).</td></tr><tr valign=top><td>ULONG changeMask:</td><td>mask specifying which specific styles are to be set or unset.</td></tr><tr valign=top><td colspan=2 class="subhead">Return value:</td></tr><tr valign=top><td>BOOL:</td><td>TRUE if the operation was successful,<br>FALSE in case of error.</td></tr><tr valign=top><td colspan=2 class="subhead">Example:</td></tr><tr valign=top><td colspan=2 class="codexmpl">
+   // to make the left/top pane collapsable
+   rc = dSplitSetStyle(hwndDlg, ID_SPLITPANE,
+                       SPLITS_HIDEPANE1, SPLITS_HIDEPANE1);
+   // to make ONLY the left/top pane collapsable
+   rc = dSplitSetStyle(hwndDlg, ID_SPLITPANE,
+                       SPLITS_HIDEPANE1, SPLITS_HIDEPANES);
+   // to make NO pane collapsable
+   rc = dSplitSetStyle(hwndDlg, ID_SPLITPANE,
+                       SPLITS_HIDENONE, SPLITS_HIDEPANES);
+   ...
+
+</td></tr></table><p></p>

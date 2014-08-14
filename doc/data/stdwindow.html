@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <link href="../style.css" type="text/css" rel="stylesheet"></head>
+<body class="body">
+
+
+<h3>Using a splitpane in a standard window</h3>
+To use a splitpane in a standard window you typically create it and its
+children during the client window creation. <br>
+<br>
+You might do that by creating each window via the
+<span class="relevant">WinCreateWindow()</span>
+API or you might more comfortably use the
+<a href="create.html">WinCreateSplitPane()</a>
+API which is part of the splitpane package.<br>
+<br>
+The following code example shows how to create a splitpane,
+containing a listbox on the left and a multi-line edit control on the right,
+via the standard system APIs.<br>
+<p></p><div class="codexmpl"><br><span class="comment">// Example of a splitpane completely overlaying the client window.</span><br><br><span class="keyword">case</span> <span class="os2kwd">WM_CREATE</span>:<br>   <span class="comment">// create the first side pane (for instance a listbox)</span><br>   hwndChild1 = <span class="keyword">WinCreateWindow</span>(<br>               hwnd,           <span class="comment">// the real parent window is the client</span><br>               <span class="os2kwd">WC_LISTBOX</span>,<br>               NULL,<br>               <span class="os2kwd">WS_VISIBLE</span> | <span class="os2kwd">LS_NOADJUSTPOS</span>,<br>               0,0,0,0,        <span class="comment">// position and size handled by splitpane</span><br>               hwnd,           <span class="comment">// the client window is owner too</span><br>               <span class="os2kwd">HWND_TOP</span>,<br>               ID_LBOXMAIN,<br>               NULL,<br>               NULL,<br>               );<br>   <span class="comment">// create a splitpane window completely overlaying the client window</span><br>   hwndSplitPane = <span class="keyword">WinCreateWindow</span>(<br>               hwnd,           <span class="comment">// client window handle</span><br>               <span class="spltkwd">WC_SPLITPANE</span>,   <span class="comment">// splitpane class</span><br>               NULL,           <span class="comment">// no text is used in splitpanes</span><br>               WS_VISIBLE,     <span class="comment">// optionally add splitpane styles</span><br>               0, 0,        <span class="comment">// low,left corner coordinates</span><br>               ((<span class="os2kwd">PCREATESTRUCT</span>)mp2)-&gt;cx,   <span class="comment">// client width</span><br>               ((<span class="os2kwd">PCREATESTRUCT</span>)mp2)-&gt;cy,   <span class="comment">// client height</span><br>               hwnd,           <span class="comment">// client window handle</span><br>               <span class="os2kwd">HWND_TOP</span>,       <span class="comment">// on top of the client</span><br>               ID_SPLTMAIN,    <span class="comment">// example of window id</span><br>               NULL,           <span class="comment">// see below for control data</span><br>               NULL            <span class="comment">// see below for presentation parameters</span><br>               );<br>   <span class="comment">// create the second child (for instance a multi-line edit box)</span><br>   hwndChild2 = <span class="keyword">WinCreateWindow</span>(<br>               hwnd,           <span class="comment">// the real parent window is the client</span><br>               <span class="os2kwd">WC_MLE</span>,<br>               NULL,<br>               <span class="os2kwd">WS_VISIBLE</span> | <span class="os2kwd">MLS_BORDER</span> | <span class="os2kwd">MLS_LIMITVSCROLL</span> | <span class="os2kwd">MLS_VSCROLL</span>,<br>               0,0,0,0,        <span class="comment">// position and size handled by splitpane</span><br>               hwnd,           <span class="comment">// the client window is owner too</span><br>               <span class="os2kwd">HWND_TOP</span>,<br>               ID_MLEMAIN,<br>               NULL,<br>               NULL,<br>               );<br>   <span class="comment">// make hwndChild1 and hwndChild2 virtual child of hwndSplitPane</span><br>   <span class="keyword">WinSendMsg</span>(hwndSplitPane, SPLITM_SET,<br>              <span class="os2kwd">MPFROM2SHORT</span>(<span class="spltkwd">SPLITMP_CHILDHWND</span>, <span class="spltkwd">SPLITMP_PANE1</span>),<br>              (<span class="os2kwd">MPARAM</span>)hwndChild1);<br>   <span class="keyword">WinSendMsg</span>(hwndSplitPane, SPLITM_SET,<br>              <span class="os2kwd">MPFROM2SHORT</span>(<span class="spltkwd">SPLITMP_CHILDHWND</span>, <span class="spltkwd">SPLITMP_PANE2</span>),<br>              (<span class="os2kwd">MPARAM</span>)hwndChild2);<br><br>   <span class="comment">/* in alternative you can use one of the macros defined in splitpane.h</span><br class="comment"><span class="comment">   <a href="handle.html">wSplitSetChildHandle</a>(hwndSplitPane, SPLITMP_PANE1, hwndChild1);</span><br class="comment"><span class="comment">   <a href="handle.html">wSplitSetChildHandle</a>(hwndSplitPane, SPLITMP_PANE2, hwndChild2);</span><br class="comment"><span class="comment">   */</span><br>   ...<br></div><p></p>
+<p>The <a href="create.html">WinCreateSplitPane()</a> API requires much less
+code while allowing even complex layouts like the one displayed in the
+image below.<br>
+<img src="5.png" height="205" hspace="50" vspace="8" width="408"></p>
+<p>The following code example creates the same layout of
+the previous example with much less effort.
+</p>
+<p></p><div class="codexmpl"><br><a name="WinCreateSplitPane"></a><span class="comment">// Example of a splitpane completely overlaying the client window.</span><br><span class="keyword">case</span> <span class="os2kwd">WM_CREATE</span>:<br>   {<br>      <span class="os2kwd">HWND</span> hwndSplitPane;<br>      <span class="spltkwd">SPLITPCREATE</span> sc;<br><br>      <span class="keyword">memset</span>(&amp;sc, 0, sizeof(sc);<br>      sc.pane1.class = <span class="os2kwd">WC_LISTBOX</span>;<br>      sc.pane1.style = <span class="os2kwd">LS_NOADJUSTPOS</span>;<br>      sc.pane1.id = ID_LBOXMAIN;<br>      sc.pane2.class = <span class="os2kwd">WC_MLE</span>;<br>      sc.pane2.style = <span class="os2kwd">MLS_BORDER</span> | <span class="os2kwd">MLS_LIMITVSCROLL</span> | <span class="os2kwd">MLS_VSCROLL</span>;<br>      sc.pane2.id = ID_MLEMAIN;<br><br>      hwndSplitPane = <a href="create.html">WinCreateSplitPane</a>(<br>                hwnd,<br>                <span class="os2kwd">WS_VISIBLE</span>,<br>                ID_SPLTMAIN,<br>                0, 0,<br>                ((<span class="os2kwd">PCREATESTRUCT</span>)mp2)-&gt;cx,   <span class="comment">// client width</span><br>                ((<span class="os2kwd">PCREATESTRUCT</span>)mp2)-&gt;cy,   <span class="comment">// client height</span><br>                &amp;sc);<br>      ...<br>   }<br><br></div>
+<p></p>
+<p>In your client window procedure you should also
+handle the <span class="os2kwd">WM_SIZE</span> message in order to update the size
+of the splitpane window leaving it the task of taking care of the size
+and position of its (virtual) child panes.<br>
+Besides that, filtering <span class="os2kwd">WM_CHAR</span>
+messages for the <span class="os2kwd">VK_TAB</span> and
+<span class="os2kwd">VK_BACKTAB</span> keys would allow to control the
+splitter and to switch the focus among the various controls via the
+keyboard.</p>
+</body></html>

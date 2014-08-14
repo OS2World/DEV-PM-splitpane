@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><link href="../style.css" type="text/css" rel="stylesheet"></head>
+<body class="body"><h3>Updating control data</h3>The
+<a href="ctldata.html">SPLITCTLDATA</a> structure can be used to set at once multiple properties
+of a splitpane control on window creation (as a <span class="relevant">WinCreateWindow()</span>
+parameter or as a <span class="os2kwd">CTLDATA</span> resource script statement) or any time by
+sending the <span class="os2kwd">WM_SETWINDOWPARAMS</span> message as described in the example
+below.
+<div class="codexmpl">
+   <span class="os2kwd">WNDPARAMS</span> wp;
+   <span class="spltkwd">SPLITCTLDATA</span> scd;
+
+   <span class="keyword">memset</span>(&amp;scd, 0, sizeof(scd));
+   scd.cb = sizeof(scd);
+   <span class="keyword">memset</span>(&amp;wp, 0, sizeof(wp));
+   wp.fsStatus = <span class="os2kwd">WPM_CTLDATA</span>;
+   wp.cbCtlData = scd.cb;
+   wp.pCtlData = &amp;scd;
+
+   <span class="comment">// read the current settings</span>
+   scd.splitterPos = -20;   <span class="comment">// set the position to 20 %</span>
+   scd.minLeft = 100;       <span class="comment">// set min width to 100 pixels</span>
+   scd.minRight = 200;      <span class="comment">// set min width to 200 pixels</span>
+   scd.thickness = 10;      <span class="comment">// set the splitter thickness to 10 pixels</span>
+   scd.style = <span class="spltkwd">SPLITS_ROWS</span>; <span class="comment">// change to row division</span>
+   <span class="comment">// set all the needed flags otherwise some members may be ignored:</span>
+   scd.flag = <span class="spltkwd">SPLITCD_POS</span> | <span class="spltkwd">SPLITCD_MINLEFT</span> | <span class="spltkwd">SPLITCD_MINRIGHT</span> |
+              <span class="spltkwd">SPLITCD_THICKNESS</span> | <span class="spltkwd">SPLITCD_STYLE</span>;
+   <span class="keyword">WinSendMsg</span>(g.hwndSplitPane, <span class="os2kwd">WM_SETWINDOWPARAMS</span>, (<span class="os2kwd">MPARAM</span>)&amp;wp, <span class="os2kwd">MPVOID</span>);
+   ...
+
+</div>
+</body></html>

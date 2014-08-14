@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><link href="../style.css" type="text/css" rel="stylesheet"></head>
+<body class="body"><h3>Querying control data</h3>To
+get at once all the data describing the current state of the
+control via the <span class="spltkwd">SPLITCTLDATA</span> structure you must use the
+<span class="os2kwd">WM_QUERYWINDOWPARAMS</span> PM message as described in the code snippet below.<br>
+
+<div class="codexmpl">
+   <span class="os2kwd">WNDPARAMS</span> wp;
+   <span class="spltkwd">SPLITCTLDATA</span> scd;
+
+   <span class="keyword">memset</span>(&amp;scd, 0, sizeof(scd));
+   scd.cb = sizeof(scd);
+   <span class="keyword">memset</span>(&amp;wp, 0, sizeof(wp));
+   wp.fsStatus = <span class="os2kwd">WPM_CBCTLDATA</span> | <span class="os2kwd">WPM_CTLDATA</span>;
+   wp.cbCtlData = scd.cb;
+   wp.pCtlData = &amp;scd;
+   <span class="comment">// get the control data</span>
+   if (<span class="keyword">WinSendMsg</span>(g.hwndSplitPane, <span class="os2kwd">WM_QUERYWINDOWPARAMS</span>, (<span class="os2kwd">MPARAM</span>)&amp;wp, <span class="os2kwd">MPVOID</span>))
+   {
+      ...
+   }
+
+</div>
+</body></html>

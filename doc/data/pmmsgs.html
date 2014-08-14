@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><link href="../style.css" type="text/css" rel="stylesheet"><title></title></head>
+<body class="body"><h3>PM messages</h3>
+<p>The splitpane control uses just two PM messages to query or
+set its
+properties, <span class="spltkwd">SPLITM_QUERY</span>
+and <span class="spltkwd">SPLITM_SET</span>.</p>
+<p>The <i>first short of the first message parameter</i> specifies the
+property which is being queried or set:</p>
+<table border="0" cellpadding="0" cellspacing="2" width="100%"><tbody>
+<tr valign="top"><td class="spltkwd" width="30%">SPLITMP_CHILDREN</td><td>query/set the IDs of the side panes</td></tr>
+<tr valign="top"><td class="spltkwd">SPLITMP_CHILDHWND</td><td>query/set the window handle of a child pane</td></tr>
+<tr valign="top"><td class="spltkwd">SPLITMP_PANERECT</td><td>query a pane or the whole splitpane coordinates</td></tr>
+<tr valign="top"><td class="spltkwd">SPLITMP_PANEPOSSIZE</td><td>query a pane or the whole splitpane position and size</td></tr>
+<tr valign="top"><td class="spltkwd">SPLITMP_BARPOS</td><td>query/set the splitter position</td></tr>
+<tr valign="top"><td class="spltkwd">SPLITMP_BARTH<span class="spltkwd">I</span>CKNESS</td><td>query/set the splitter thickness</td></tr>
+<tr valign="top"><td class="spltkwd">SPLITMP_MINWIDTHHEIGHT</td><td>query/set the minimum width/height of a pane</td></tr>
+<tr valign="top"> <td class="spltkwd">SPLITMP_STYLE</td><td>query/set the splitpane style</td></tr>
+</tbody></table>
+<p>The <i>second short of the first message parameter</i> is used when a given
+properties may apply to different splitpane parts and specifies the property scope:</p>
+<table border="0" cellpadding="0" cellspacing="2" width="100%"><tbody>
+<tr valign="top"><td colspan="2" width="30%"><i>coordinate or size-position&nbsp;request scope:</i></td></tr>
+<tr valign="top"><td class="spltkwd">SPLITMP_WHOLEPANE</td><td>the whole splitpane</td></tr>
+<tr valign="top"><td class="spltkwd">SPLITMP_PANE1</td><td>the left/top pane</td></tr>
+<tr valign="top"><td class="spltkwd">SPLITMP_PANE2</td><td>the right/bottom pane</td></tr>
+<tr valign="top"><td colspan="2"><i>minimum width/height&nbsp;query/set scope:</i></td></tr>
+<tr valign="top"><td class="spltkwd">SPLITMP_LEFT</td><td>the left pane (column division i.e. vertical splitter)</td></tr>
+<tr valign="top"><td class="spltkwd">SPLITMP_TOP</td><td>the top pane (row division i.e. horizontal splitter)</td></tr>
+<tr valign="top"><td class="spltkwd">SPLITMP_RIGHT</td><td>the right pane (column division i.e. vertical splitter)</td></tr>
+<tr valign="top"><td class="spltkwd">SPLITMP_BOTTOM</td><td>the bottom pane (row division i.e. horizontal splitter)</td></tr>
+</tbody></table>
+<p>The axSplitpane.h file, anyway, contains the definition of a <a href="macros.html">complete
+set of macros</a> which allow to query or set all the available properties in
+a much more comfortable way.
+</p>
+</body></html>
